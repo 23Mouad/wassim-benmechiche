@@ -10,10 +10,6 @@ export default async function AdminLayout({
 }: {
   children: React.ReactNode
 }) {
-  const session = await getServerSession(authOptions)
-  if (!session) {
-    return null
-  }
 
   return (
     <div className="flex h-screen bg-gray-100">
