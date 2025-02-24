@@ -1,7 +1,5 @@
 import type React from "react"
 import Link from "next/link"
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "@/lib/auth"
 import { AdminHeader } from "@/components/admin-header"
 import { LayoutDashboard, FolderKanban, Image, MessageSquare, Briefcase } from "lucide-react"
 
