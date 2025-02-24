@@ -11,6 +11,9 @@ export default async function AdminLayout({
   children: React.ReactNode
 }) {
   const session = await getServerSession(authOptions)
+  if (!session) {
+    return null
+  }
 
   return (
     <div className="flex h-screen bg-gray-100">
@@ -44,7 +47,7 @@ export default async function AdminLayout({
             href="/admin/hero"
             className="group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50"
           >
-            <Image className="mr-3 h-5 w-5" />
+            <Image className="mr-3 h-5 w-5"  />
             Edit Hero Section
           </Link>
           <Link

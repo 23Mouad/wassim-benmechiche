@@ -99,7 +99,7 @@ export default function EditProject({ params }: { params: { id: string } }) {
   const removeNewImage = (index: number) => {
     const updatedNewImages = newImages.filter((_, i) => i !== index)
     setNewImages(updatedNewImages)
-    if (primaryImageIndex === project?.images.length! + index) {
+    if (primaryImageIndex === (project?.images?.length ?? 0) + index) {
       setPrimaryImageIndex(0)
     }
   }
@@ -160,6 +160,8 @@ export default function EditProject({ params }: { params: { id: string } }) {
         description: "Failed to update project",
         variant: "destructive",
       })
+
+      console.error("Error updating project:", error)
     } finally {
       setIsSubmitting(false)
     }

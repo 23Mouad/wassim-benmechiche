@@ -45,6 +45,7 @@ export function Contact() {
         description: "Failed to send message. Please try again later.",
         variant: "destructive",
       })
+      console.error("Error sending message:", error)
     }
   }
 

@@ -6,15 +6,20 @@ if (!MONGODB_URI) {
   throw new Error("Please define the MONGODB_URI environment variable inside .env.local")
 }
 
-let cached = global.mongoose
-
-if (!cached) {
-  cached = global.mongoose = { conn: null, promise: null }
+interface MongooseCache {
+  conn: typeof mongoose | null
+  promise: Promise<typeof mongoose> | null
 }
 
+let cached: MongooseCache | null = null
+
 async function dbConnect() {
-  if (cached.conn) {
+  if (cached && cached.conn) {
     return cached.conn
+  }
+
+  if (!cached) {
+    cached = { conn: null, promise: null }
   }
 
   if (!cached.promise) {
@@ -32,7 +37,6 @@ async function dbConnect() {
   } catch (e) {
     cached.promise = null
     console.error("Failed to connect to MongoDB", e)
-    // Instead of throwing, return null or a default value
     return null
   }
 

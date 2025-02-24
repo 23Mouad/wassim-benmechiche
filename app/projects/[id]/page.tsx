@@ -18,12 +18,15 @@ async function getProject(id: string) {
   }
 }
 
+
 export default async function ProjectPage({ params }: { params: { id: string } }) {
   const project = await getProject(params.id)
 
   if (!project) {
     notFound()
   }
+
+  type ImageType = { path: string; isPrimary: boolean };
 
   return (
     <>
@@ -48,7 +51,7 @@ export default async function ProjectPage({ params }: { params: { id: string } }
             <div className="mb-8 p-8 rounded-3xl overflow-hidden" style={{ backgroundColor: project.backgroundColor }}>
               <div className="relative aspect-[16/9] rounded-xl overflow-hidden">
                 <Image
-                  src={project.images?.find((img: any) => img.isPrimary)?.path || "/placeholder.svg"}
+                  src={project.images?.find((img: ImageType) => img.isPrimary)?.path || "/placeholder.svg"}
                   alt={project.title}
                   fill
                   className="object-cover"
@@ -59,8 +62,8 @@ export default async function ProjectPage({ params }: { params: { id: string } }
             {/* Gallery */}
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
               {project.images
-                ?.filter((img: any) => !img.isPrimary)
-                .map((image: any, index: number) => (
+                ?.filter((img: ImageType) => !img.isPrimary)
+                .map((image: ImageType, index: number) => (
                   <div
                     key={index}
                     className="relative aspect-square rounded-xl overflow-hidden"

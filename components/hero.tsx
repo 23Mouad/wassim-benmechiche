@@ -56,7 +56,7 @@ export function Hero() {
                 Flutter Developer | Mobile App Specialist
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl">
-                I'm Wassim benmechiche, a dedicated Flutter Developer with a passion for creating beautiful and
+                I&apos;m Wassim benmechiche, a dedicated Flutter Developer with a passion for creating beautiful and
                 performant mobile applications. Specializing in cross-platform development and user-centric design.
               </p>
             </motion.div>

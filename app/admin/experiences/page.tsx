@@ -72,6 +72,7 @@ export default function ManageExperiences() {
         description: "Failed to add experience",
         variant: "destructive",
       })
+      console.error("Error adding experience:", error)
     }
   }
 
@@ -93,6 +94,8 @@ export default function ManageExperiences() {
         description: "Failed to update experience",
         variant: "destructive",
       })
+
+      console.error("Error updating experience:", error)
     }
   }
 
@@ -112,6 +115,8 @@ export default function ManageExperiences() {
         description: "Failed to delete experience",
         variant: "destructive",
       })
+
+      console.error("Error deleting experience:", error)
     }
   }
 

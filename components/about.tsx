@@ -26,9 +26,9 @@ export function About() {
           </CardHeader>
           <CardContent>
             <p className="mb-4">
-              I'm a passionate Flutter developer with over 5 years of experience in creating beautiful, scalable, and
+              I&apos;m a passionate Flutter developer with over 5 years of experience in creating beautiful, scalable, and
               performant mobile applications. My journey in mobile development started with native Android, but I
-              quickly fell in love with Flutter's flexibility and efficiency.
+              quickly fell in love with Flutter&apos;s flexibility and efficiency.
             </p>
             <p className="mb-4">
               I thrive on challenges and constantly push myself to learn new technologies and best practices. My goal is

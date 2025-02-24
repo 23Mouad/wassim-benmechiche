@@ -33,7 +33,7 @@ export async function PUT(request: Request, { params }: { params: { id: string }
   }
 
   // Handle existing images
-  const updatedImages = existingImages.map((image: any, index: number) => ({
+  const updatedImages = existingImages.map((image: { path: string; isPrimary: boolean }, index: number) => ({
     path: image.path,
     isPrimary: index === primaryImageIndex,
   }))
