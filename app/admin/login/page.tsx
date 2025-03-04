@@ -4,7 +4,7 @@ import type React from "react"
 
 import { useState } from "react"
 import { signIn } from "next-auth/react"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Alert, AlertDescription } from "@/components/ui/alert"
@@ -16,6 +16,8 @@ export default function Login() {
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const callbackUrl = searchParams.get("callbackUrl") || "/admin"
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -27,16 +29,17 @@ export default function Login() {
         username,
         password,
         redirect: false,
+        callbackUrl,
       })
 
       if (result?.error) {
         setError("Invalid username or password")
-      } else if (result?.ok) {
-        router.push("/admin")
+      } else if (result?.url) {
+        router.push(result.url)
       }
-    } catch (err) {
-      setError("An error occurred. Please try again.")
-      console.error("Login error:", err)
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : "An unknown error occurred"
+      setError(`An error occurred. Please try again. ${errorMessage}`)
     } finally {
       setLoading(false)
     }

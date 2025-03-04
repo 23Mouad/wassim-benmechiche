@@ -17,7 +17,7 @@ const transporter = nodemailer.createTransport({
 
 export const sendEmail = async (to: string, subject: string, text: string, html?: string) => {
   const mailOptions = {
-    from: `"Wassim Benmechiche" <${process.env.EMAIL_USER}>`,
+    from: `"Wassime Benmachich" <${process.env.EMAIL_USER}>`,
     to,
     subject,
     text,
@@ -51,14 +51,14 @@ export const sendAdminNotification = async (name: string, email: string, message
 }
 
 export const sendUserConfirmation = async (name: string, email: string) => {
-  const subject = "Thank you for contacting Wassim Benmechiche"
+  const subject = "Thank you for contacting Wassime Benmachich"
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
       <h1 style="color: #333;">Thank you for your message, ${name}!</h1>
       <div style="background-color: #f5f5f5; padding: 20px; border-radius: 5px;">
         <p>I have received your inquiry and will get back to you as soon as possible.</p>
         <p>Best regards,</p>
-        <p><strong>Wassim Benmechiche</strong></p>
+        <p><strong>Wassime Benmachich</strong></p>
       </div>
     </div>
   `

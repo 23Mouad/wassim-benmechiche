@@ -1,6 +1,7 @@
 "use client"
 
 import type React from "react"
+
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import Image from "next/image"
@@ -51,21 +52,30 @@ export default function EditProject({ params }: { params: { id: string } }) {
   const [backgroundColor, setBackgroundColor] = useState("#f5f5f5")
 
   useEffect(() => {
-    fetch(`/api/projects/${params.id}`)
-      .then((res) => res.json())
-      .then((data) => {
+    const fetchProject = async () => {
+      try {
+        const res = await fetch(`/api/projects/${params.id}`)
+        if (!res.ok) throw new Error("Failed to fetch project")
+        const data = await res.json()
         setProject(data)
         setHasGithub(!!data.github)
         setHasPlaystore(!!data.playstore)
         setPrimaryImageIndex(data.images.findIndex((img: ProjectImage) => img.isPrimary))
         setTags(data.tags || [])
         setBackgroundColor(data.backgroundColor || "#f5f5f5")
-        setLoading(false)
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("Error fetching project:", error)
+        toast({
+          title: "Error",
+          description: "Failed to load project. Please try again.",
+          variant: "destructive",
+        })
+      } finally {
         setLoading(false)
-      })
+      }
+    }
+
+    fetchProject()
   }, [params.id])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -99,7 +109,7 @@ export default function EditProject({ params }: { params: { id: string } }) {
   const removeNewImage = (index: number) => {
     const updatedNewImages = newImages.filter((_, i) => i !== index)
     setNewImages(updatedNewImages)
-    if (primaryImageIndex === (project?.images?.length ?? 0) + index) {
+    if (project && primaryImageIndex === project.images.length + index) {
       setPrimaryImageIndex(0)
     }
   }
@@ -160,8 +170,6 @@ export default function EditProject({ params }: { params: { id: string } }) {
         description: "Failed to update project",
         variant: "destructive",
       })
-
-      console.error("Error updating project:", error)
     } finally {
       setIsSubmitting(false)
     }
@@ -294,7 +302,7 @@ export default function EditProject({ params }: { params: { id: string } }) {
                     type="file"
                     onChange={handleNewImageUpload}
                     accept="image/*"
-                    className="absolute inset-0 opacity-0 cursor-pointer h-[300px]"
+                    className="absolute inset-0 opacity-0 cursor-pointer"
                     multiple
                   />
                   <Plus className="h-6 w-6 text-muted-foreground" />

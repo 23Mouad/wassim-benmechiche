@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { toast } from "@/hooks/use-toast"
 
 interface Project {
   _id: string
@@ -13,20 +14,57 @@ interface Project {
 
 export default function ManageProjects() {
   const [projects, setProjects] = useState<Project[]>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch("/api/projects")
-      .then((res) => res.json())
-      .then((data) => setProjects(data))
+    fetchProjects()
   }, [])
+
+  const fetchProjects = async () => {
+    try {
+      const res = await fetch("/api/projects")
+      if (!res.ok) {
+        throw new Error("Failed to fetch projects")
+      }
+      const data = await res.json()
+      setProjects(data)
+    } catch (error) {
+      console.error("Error fetching projects:", error)
+      toast({
+        title: "Error",
+        description: "Failed to load projects. Please try again later.",
+        variant: "destructive",
+      })
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const deleteProject = async (id: string) => {
     if (confirm("Are you sure you want to delete this project?")) {
-      const res = await fetch(`/api/projects/${id}`, { method: "DELETE" })
-      if (res.ok) {
+      try {
+        const res = await fetch(`/api/projects/${id}`, { method: "DELETE" })
+        if (!res.ok) {
+          throw new Error("Failed to delete project")
+        }
         setProjects(projects.filter((project) => project._id !== id))
+        toast({
+          title: "Success",
+          description: "Project deleted successfully",
+        })
+      } catch (error) {
+        console.error("Error deleting project:", error)
+        toast({
+          title: "Error",
+          description: "Failed to delete project. Please try again.",
+          variant: "destructive",
+        })
       }
     }
+  }
+
+  if (loading) {
+    return <div>Loading...</div>
   }
 
   return (
@@ -37,31 +75,35 @@ export default function ManageProjects() {
           <Link href="/admin/projects/new">Add New Project</Link>
         </Button>
       </div>
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead>Title</TableHead>
-            <TableHead>Description</TableHead>
-            <TableHead>Actions</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {projects.map((project) => (
-            <TableRow key={project._id}>
-              <TableCell>{project.title}</TableCell>
-              <TableCell>{project.description.substring(0, 100)}...</TableCell>
-              <TableCell>
-                <Button asChild variant="outline" className="mr-2">
-                  <Link href={`/admin/projects/${project._id}/edit`}>Edit</Link>
-                </Button>
-                <Button variant="destructive" onClick={() => deleteProject(project._id)}>
-                  Delete
-                </Button>
-              </TableCell>
+      {projects.length === 0 ? (
+        <p>No projects found.</p>
+      ) : (
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Title</TableHead>
+              <TableHead>Description</TableHead>
+              <TableHead>Actions</TableHead>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHeader>
+          <TableBody>
+            {projects.map((project) => (
+              <TableRow key={project._id}>
+                <TableCell>{project.title}</TableCell>
+                <TableCell>{project.description.substring(0, 100)}...</TableCell>
+                <TableCell>
+                  <Button asChild variant="outline" className="mr-2">
+                    <Link href={`/admin/projects/${project._id}/edit`}>Edit</Link>
+                  </Button>
+                  <Button variant="destructive" onClick={() => deleteProject(project._id)}>
+                    Delete
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      )}
     </div>
   )
 }

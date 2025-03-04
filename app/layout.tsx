@@ -11,9 +11,9 @@ import Loading from "./loading"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Wassim Benmechiche - Flutter Developer",
+  title: "Wassime Benmachich - Flutter Developer",
   description:
-    "Portfolio of Wassim Benmechiche, a skilled Flutter app developer building scalable and beautiful mobile applications.",
+    "Portfolio of Wassime Benmachich, a skilled Flutter app developer building scalable and beautiful mobile applications.",
 }
 
 export default function RootLayout({

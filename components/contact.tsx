@@ -39,13 +39,13 @@ export function Contact() {
       } else {
         throw new Error("Failed to send message")
       }
-    } catch (error) {
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "An unknown error occurred"
       toast({
         title: "Error",
-        description: "Failed to send message. Please try again later.",
+        description: `Failed to send message. Please try again later. ${errorMessage}`,
         variant: "destructive",
       })
-      console.error("Error sending message:", error)
     }
   }
 
@@ -76,7 +76,7 @@ export function Contact() {
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <Mail className="text-primary" />
-                <span>wasio@example.com</span>
+                <span>wassime@example.com</span>
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="text-primary" />

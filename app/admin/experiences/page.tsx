@@ -66,13 +66,13 @@ export default function ManageExperiences() {
         })
         fetchExperiences()
       }
-    } catch (error) {
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "An unknown error occurred"
       toast({
         title: "Error",
-        description: "Failed to add experience",
+        description: `Failed to add experience: ${errorMessage}`,
         variant: "destructive",
       })
-      console.error("Error adding experience:", error)
     }
   }
 
@@ -88,14 +88,13 @@ export default function ManageExperiences() {
         setEditingId(null)
         fetchExperiences()
       }
-    } catch (error) {
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "An unknown error occurred"
       toast({
         title: "Error",
-        description: "Failed to update experience",
+        description: `Failed to update experience: ${errorMessage}`,
         variant: "destructive",
       })
-
-      console.error("Error updating experience:", error)
     }
   }
 
@@ -109,14 +108,13 @@ export default function ManageExperiences() {
         toast({ title: "Success", description: "Experience deleted successfully" })
         fetchExperiences()
       }
-    } catch (error) {
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "An unknown error occurred"
       toast({
         title: "Error",
-        description: "Failed to delete experience",
+        description: `Failed to delete experience: ${errorMessage}`,
         variant: "destructive",
       })
-
-      console.error("Error deleting experience:", error)
     }
   }
 

@@ -1,15 +1,17 @@
 import { NextResponse } from "next/server"
 import dbConnect from "@/lib/mongodb"
 import Project from "@/models/Project"
-import { writeFile, unlink } from "fs/promises"
-import { join } from "path"
+import { uploadToCloudinary } from "@/lib/server-utils"
+import cloudinary from "@/lib/cloudinary"
 
 export async function GET(request: Request, { params }: { params: { id: string } }) {
   await dbConnect()
   const project = await Project.findById(params.id)
+
   if (!project) {
     return NextResponse.json({ error: "Project not found" }, { status: 404 })
   }
+
   return NextResponse.json(project)
 }
 
@@ -19,7 +21,7 @@ export async function PUT(request: Request, { params }: { params: { id: string }
   const description = formData.get("description") as string
   const github = formData.get("github") as string
   const playstore = formData.get("playstore") as string
-  const tags = JSON.parse(formData.get("tags") as string)
+  const tags = JSON.parse(formData.get("tags") as string) as string[]
   const backgroundColor = formData.get("backgroundColor") as string
   const existingImages = JSON.parse(formData.get("existingImages") as string)
   const newImages = formData.getAll("newImages") as File[]
@@ -33,23 +35,16 @@ export async function PUT(request: Request, { params }: { params: { id: string }
   }
 
   // Handle existing images
-  const updatedImages = existingImages.map((image: { path: string; isPrimary: boolean }, index: number) => ({
+  const updatedImages = existingImages.map((image: { path: string }, index: number) => ({
     path: image.path,
     isPrimary: index === primaryImageIndex,
   }))
 
   // Handle new images
-  const uploadsDir = join(process.cwd(), "public", "uploads")
   for (const image of newImages) {
-    const bytes = await image.arrayBuffer()
-    const buffer = Buffer.from(bytes)
-
-    const filename = `${Date.now()}-${image.name}`
-    const path = join(uploadsDir, filename)
-    await writeFile(path, buffer)
-
+    const result = await uploadToCloudinary(image)
     updatedImages.push({
-      path: `/uploads/${filename}`,
+      path: result.secure_url,
       isPrimary: updatedImages.length === primaryImageIndex,
     })
   }
@@ -77,13 +72,20 @@ export async function DELETE(request: Request, { params }: { params: { id: strin
     return NextResponse.json({ error: "Project not found" }, { status: 404 })
   }
 
-  // Delete associated image files
+  // Delete associated image files from Cloudinary
   for (const image of project.images) {
-    const imagePath = join(process.cwd(), "public", image.path)
-    await unlink(imagePath).catch(console.error)
+    const publicId = image.path.split("/").pop()?.split(".")[0]
+    if (publicId) {
+      try {
+        await cloudinary.uploader.destroy(publicId)
+        console.log(`Deleted image ${publicId} from Cloudinary`)
+      } catch (error) {
+        console.error(`Failed to delete image ${publicId} from Cloudinary:`, error)
+      }
+    }
   }
 
   await Project.findByIdAndDelete(params.id)
-  return NextResponse.json({ message: "Project deleted successfully" })
+  return NextResponse.json({ message: "Project and associated images deleted successfully" })
 }
 

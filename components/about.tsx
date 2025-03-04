@@ -21,13 +21,13 @@ export function About() {
         <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-12 text-center">About Me</h2>
         <Card>
           <CardHeader>
-            <CardTitle>Wassim Benmechiche</CardTitle>
+            <CardTitle>Wassime Benmachich</CardTitle>
             <CardDescription>Flutter Developer & Mobile App Enthusiast</CardDescription>
           </CardHeader>
           <CardContent>
             <p className="mb-4">
-              I&apos;m a passionate Flutter developer with over 5 years of experience in creating beautiful, scalable, and
-              performant mobile applications. My journey in mobile development started with native Android, but I
+              I&apos;m a passionate Flutter developer with over 5 years of experience in creating beautiful, scalable,
+              and performant mobile applications. My journey in mobile development started with native Android, but I
               quickly fell in love with Flutter&apos;s flexibility and efficiency.
             </p>
             <p className="mb-4">

@@ -75,8 +75,6 @@ export default function EditHeroSection() {
         description: "Failed to update hero image",
         variant: "destructive",
       })
-
-      console.error("Error fetching hero:", error)
     } finally {
       setSaving(false)
     }
