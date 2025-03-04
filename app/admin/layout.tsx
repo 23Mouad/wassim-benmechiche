@@ -1,6 +1,6 @@
 import type React from "react"
 import Link from "next/link"
-import { LayoutDashboard, FolderKanban, MessageSquare, Briefcase } from "lucide-react"
+import { LayoutDashboard, FolderKanban, MessageSquare, Briefcase , Frame } from "lucide-react"
 import Image from "next/image"
 import AdminHeader from "./AdminHeader"
 
@@ -41,7 +41,7 @@ export default async function AdminLayout({
             href="/admin/hero"
             className="group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50"
           >
-            <Image className="mr-3 h-5 w-5" alt="profile pic" src="/path-to-image.png" />
+            <Frame className="mr-3 h-5 w-5" />
             Edit Hero Section
           </Link>
           <Link
