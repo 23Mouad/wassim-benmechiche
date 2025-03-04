@@ -1,7 +1,6 @@
 import type React from "react"
 import Link from "next/link"
 import { LayoutDashboard, FolderKanban, MessageSquare, Briefcase , Frame } from "lucide-react"
-import Image from "next/image"
 import AdminHeader from "./AdminHeader"
 
 export default async function AdminLayout({
