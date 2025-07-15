@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Briefcase } from "lucide-react";
+import {  Linkedin } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 export function Hero() {
@@ -37,15 +37,24 @@ export function Hero() {
                             transition={{ delay: 0.2 }}
                             className="space-y-4"
                         >
-                            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
-                                Flutter Developer | Mobile App Specialist
+                            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
+                                Wassim Benmechiche
                             </h1>
+                            <h4 className=" font-bold tracking-tighter sm:text-2xl md:text-3xl lg:text-4xl">
+                                Software Engineer | Flutter Developer
+                            </h4>
                             <p className="text-xl text-muted-foreground max-w-2xl">
-                                I&apos;m Wassime Benmachich, a dedicated Flutter
-                                Developer with a passion for creating beautiful
-                                and performant mobile applications. Specializing
-                                in cross-platform development and user-centric
-                                design.
+                                I&apos;m a Software Engineer specialized in
+                                mobile development using Flutter and Dart. I
+                                have hands-on experiencebuilding and publishing
+                                cross-platform apps with real-world features,
+                                including real-time multiplayer,
+                                Firebaseintegration, and API consumption. I
+                                focus on writing clean, maintainable code and
+                                continuously work to improve my skills and
+                                deliver scalablesolutions. I&apos;m passionate
+                                about turning ideas into functional and
+                                high-performing mobile applications.
                             </p>
                         </motion.div>
 
@@ -55,28 +64,28 @@ export function Hero() {
                             transition={{ delay: 0.4 }}
                             className="flex gap-4"
                         >
-                            <a
+                            {/* <a
                                 href="https://github.com/wassimebenmachich"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="p-2 rounded-full hover:bg-muted transition-colors"
                             >
                                 <Github size={24} />
-                            </a>
+                            </a> */}
                             <a
-                                href="https://linkedin.com/in/wassimebenmachich"
+                                href="https://www.linkedin.com/in/wassim-benmechiche-772118248/?originalSubdomain=dz"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="p-2 rounded-full hover:bg-muted transition-colors"
                             >
                                 <Linkedin size={24} />
                             </a>
-                            <a
+                            {/* <a
                                 href="#"
                                 className="p-2 rounded-full hover:bg-muted transition-colors"
                             >
                                 <Briefcase size={24} />
-                            </a>
+                            </a> */}
                         </motion.div>
                     </div>
 

@@ -137,7 +137,7 @@ export function Projects() {
                         </Badge>
                       ))}
                     </div>
-                    <p className="text-muted-foreground line-clamp-2">{project.description}</p>
+                    <p className="text-muted-foreground line-clamp-5" title={`${project.description}`}>{project.description}</p>
                   </div>
                 </Link>
               </motion.div>

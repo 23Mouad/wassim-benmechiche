@@ -76,11 +76,11 @@ export function Contact() {
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <Mail className="text-primary" />
-                <span>wassime@example.com</span>
+                <span>benmechiche.wassim@gmail.com</span>
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="text-primary" />
-                <span>+1 234 567 890</span>
+                <span>+213 792 33 46 98</span>
               </div>
               <div className="flex items-center gap-3">
                 <MessageSquare className="text-primary" />
@@ -88,7 +88,7 @@ export function Contact() {
               </div>
             </div>
 
-            <div className="space-y-4">
+            {/* <div className="space-y-4">
               <h4 className="font-medium">Support Hours</h4>
               <p className="text-muted-foreground">
                 Monday - Friday: 9:00 AM - 6:00 PM
@@ -97,7 +97,7 @@ export function Contact() {
                 <br />
                 Sunday: Closed
               </p>
-            </div>
+            </div> */}
           </motion.div>
 
           <motion.div
@@ -120,11 +120,8 @@ export function Contact() {
                     required
                   />
                   <div className="flex gap-4">
-                    <select className="flex h-10 w-[100px] rounded-md border border-input bg-background px-3 py-2 text-sm">
-                      <option>+1</option>
-                      <option>+44</option>
-                      <option>+91</option>
-                    </select>
+                    <input className="flex h-10 w-[100px] rounded-md border border-input bg-background px-3 py-2 text-sm" placeholder="+213"/>
+                    
                     <Input placeholder="Phone number" className="flex-1" />
                   </div>
                   <Textarea
@@ -137,7 +134,7 @@ export function Contact() {
                   <Button type="submit" className="w-full">
                     Submit
                   </Button>
-                  <p className="text-xs text-center text-muted-foreground">
+                  {/* <p className="text-xs text-center text-muted-foreground">
                     By contacting us, you agree to our{" "}
                     <a href="#" className="underline">
                       Terms of service
@@ -146,7 +143,7 @@ export function Contact() {
                     <a href="#" className="underline">
                       Privacy Policy
                     </a>
-                  </p>
+                  </p> */}
                 </form>
               </CardContent>
             </Card>

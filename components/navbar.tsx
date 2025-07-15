@@ -47,7 +47,7 @@ export function Navbar() {
             {mobileMenuOpen ? <XIcon size={24} /> : <MenuIcon size={24} />}
           </Button>
           <a href="#" className="text-lg font-semibold">
-            Logo
+            Wassim Benmechiche
           </a>
         </div>
         <ul className="hidden md:flex items-center space-x-4">
