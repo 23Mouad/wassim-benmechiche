@@ -61,12 +61,14 @@ export function Navbar() {
         </ul>
         <div className="flex items-center space-x-2">
           <Button variant="outline" size="sm" asChild className="hidden sm:inline-flex">
-            <a href="/resume.pdf" download>
+            <a href="Wassim-Benmechiche-Resume.pdf
+.pdf" download>
               Download Resume
             </a>
           </Button>
           <Button variant="outline" size="sm" asChild className="sm:hidden">
-            <a href="/resume.pdf" download>
+            <a href="Wassim-Benmechiche-Resume.pdf
+.pdf" download>
               Resume
             </a>
           </Button>
