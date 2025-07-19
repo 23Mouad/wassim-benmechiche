@@ -9,8 +9,7 @@ import { Button } from "@/components/ui/button"
 const navItems = [
   { name: "About", href: "#about" },
   { name: "Projects", href: "#projects" },
-  { name: "Certifications & Educations", href: "#certifications" },
-  { name: "Professional Experience", href: "#experience" },
+
   { name: "Contact", href: "#contact" },
 ]
 
@@ -61,14 +60,12 @@ export function Navbar() {
         </ul>
         <div className="flex items-center space-x-2">
           <Button variant="outline" size="sm" asChild className="hidden sm:inline-flex">
-            <a href="Wassim-Benmechiche-Resume.pdf
-.pdf" download>
+            <a href="Wassim-Benmechiche-Resume.pdf" download>
               Download Resume
             </a>
           </Button>
           <Button variant="outline" size="sm" asChild className="sm:hidden">
-            <a href="Wassim-Benmechiche-Resume.pdf
-.pdf" download>
+            <a href="Wassim-Benmechiche-Resume.pdf" download>
               Resume
             </a>
           </Button>

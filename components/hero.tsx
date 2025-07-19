@@ -20,7 +20,7 @@ export function Hero() {
                             >
                                 <Image
                                     src={"/profileImg.jpg"}
-                                    alt="Wassime Benmachich"
+                                    alt="Wassim Benmachiche"
                                     fill
                                     className="rounded-full object-cover border-4 border-background shadow-xl"
                                 />
