@@ -41,12 +41,12 @@ export function Hero() {
                                 Wassim Benmechiche
                             </h1>
                             <h4 className=" font-bold tracking-tighter sm:text-2xl md:text-3xl lg:text-4xl">
-                                Software Engineer | Flutter Developer
+                           Flutter Developer
                             </h4>
                             <p className="text-xl text-muted-foreground max-w-2xl">
-                                I&apos;m a Software Engineer specialized in
+                                I&apos;m a Flutter Developer specialized in
                                 mobile development using Flutter and Dart. I
-                                have hands-on experiencebuilding and publishing
+                                have hands-on experience building and publishing
                                 cross-platform apps with real-world features,
                                 including real-time multiplayer,
                                 Firebaseintegration, and API consumption. I

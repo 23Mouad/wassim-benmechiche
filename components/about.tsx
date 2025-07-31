@@ -27,12 +27,12 @@ export function About() {
                     <CardHeader>
                         <CardTitle>Wassim Benmechiche</CardTitle>
                         <CardDescription>
-                            Software Engineer | Flutter Developer
+                            Flutter Developer
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
                         <p className="mb-4">
-                            I&apos;m a Software Engineer specializing in Flutter
+                            I&apos;m a Flutter Developer specializing in Flutter
                             mobile development, with hands-on experience
                             building and publishing real-world applications
                             using Flutter and Dart. <br />
